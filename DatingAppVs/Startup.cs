@@ -33,6 +33,7 @@ namespace DatingAppVs
             { 
                 options.UseSqlite(_config.GetConnectionString("DefaultConnection")); 
             });
+            services.AddCors();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -54,6 +55,7 @@ namespace DatingAppVs
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
 
             app.UseAuthorization();
 
